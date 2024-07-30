@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app_manoj/src/bloc/news_list_bloc/news_list_states.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -37,7 +39,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Icon(Icons.menu, color: Colors.white),
-        title: Center(
+        title: const Center(
           child: Text(
             "News App",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -53,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.grey[800],
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
                   "0",
                   style: TextStyle(color: Colors.white),
