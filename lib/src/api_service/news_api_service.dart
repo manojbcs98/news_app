@@ -7,8 +7,12 @@ class NewsAPIService {
     final dio = networkEngine.getDio();
 
     try {
-      final response = await dio.get(kNewsAppendUrlAPI,
-          queryParameters: {"page": 0, "size": 100});
+      final response = await dio.get(kNewsAppendUrlAPI, queryParameters: {
+        "api_token": "PNd88nmuTg642G7zGnSodbFIzHBuNsKBKCi4dvs4",
+        "language": "en",
+        'page':10,
+        'limit':3
+      });
 
       return response.data;
     } catch (e) {

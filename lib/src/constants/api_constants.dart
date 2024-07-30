@@ -1,2 +1,2 @@
-const String kNewsBaseAPI ='';
-const String kNewsAppendUrlAPI ='';
+const String kNewsBaseAPI ='https://api.thenewsapi.com/v1/news/';
+const String kNewsAppendUrlAPI ='all';

@@ -6,16 +6,14 @@ import 'package:news_app_manoj/src/widgets/splash_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  // Create an instance of NewsListRepoService
-  final newsAPIService = NewsAPIService();
-  final newsRepoService = NewsListRepoService(newsAPIService);
   runApp(
     BlocProvider(
-      create: (context) => NewsCubit(newsRepoService),
+      create: (context) => NewsCubit(),
       child: MyApp(),
     ),
   );
 }
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -25,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SplashScreen(), // Set SplashScreen as the home widget
+      home: const SplashScreen(),
     );
   }
 }

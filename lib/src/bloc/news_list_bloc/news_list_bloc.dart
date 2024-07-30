@@ -6,14 +6,13 @@ import 'news_list_states.dart';
 
 
 class NewsCubit extends Cubit<NewsState> {
-  final NewsListRepoService _newsRepoService;
 
-  NewsCubit(this._newsRepoService) : super(NewsLoading());
+  NewsCubit() : super(NewsLoading());
 
   Future<void> fetchNews() async {
     emit(NewsLoading());
     try {
-      final newsList = await _newsRepoService.getNewsList();
+      final newsList = await NewsListRepoService().getNewsList();
       emit(NewsLoaded(newsList));
     } catch (e) {
       emit(NewsError(e.toString()));
