@@ -6,6 +6,8 @@ import 'package:news_app_manoj/src/bloc/news_list_bloc/news_list_states.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shimmer/shimmer.dart';
 
+import 'news_detail_view.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -92,40 +94,91 @@ class _HomePageState extends State<HomePage> {
                       return GridView.builder(
                         physics: BouncingScrollPhysics(),
                         controller: _scrollController,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 10,
                         ),
-                        itemCount: state.newsList.length + (state.hasMore ? 1 : 0),
+                        itemCount: state.newsList.length,
                         itemBuilder: (context, index) {
-                          if (index >= state.newsList.length) {
-                            return Center(child: CircularProgressIndicator());
-                          }
                           final news = state.newsList[index];
-                          return Card(
-                            color: Colors.transparent,
-                            elevation: 0,
-                            child: CachedNetworkImage(
-                              imageUrl: news.imageUrl,
-                              imageBuilder: (context, imageProvider) => Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.cover,
+                          return Stack(
+                            children: [
+                              Card(
+                                color: Colors.transparent,
+                                elevation: 0,
+                                child: CachedNetworkImage(
+                                  imageUrl: news.imageUrl,
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                    height: 150,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  placeholder: (context, url) =>
+                                      Shimmer.fromColors(
+                                    baseColor: Colors.grey[300]!,
+                                    highlightColor: Colors.grey[100]!,
+                                    child: Container(
+                                      height: 150,
+                                      color: Colors.grey[300],
+                                    ),
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
+                                ),
+                              ),
+                              Positioned.fill(
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    borderRadius: BorderRadius.circular(20),
+                                    onTap: () {
+                                      // Handle tapping on the image/card
+                                    },
                                   ),
                                 ),
                               ),
-                              placeholder: (context, url) => Shimmer.fromColors(
-                                baseColor: Colors.grey[300]!,
-                                highlightColor: Colors.grey[100]!,
+                              Positioned(
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
                                 child: Container(
-                                  color: Colors.grey[300],
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 8, horizontal: 10),
+                                  decoration: BoxDecoration(
+                                    color: Colors.black.withOpacity(0.4),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(20),
+                                      bottomRight: Radius.circular(20),
+                                    ),
+                                  ),
+                                  child: TextButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                NewsDetail(news)),
+                                      );
+                                    },
+                                    child: Text(
+                                      'View More',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
-                              errorWidget: (context, url, error) => Icon(Icons.error),
-                            ),
+                            ],
                           );
                         },
                       );
@@ -150,7 +203,10 @@ class _HomePageState extends State<HomePage> {
       height: 150,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-
+        // image: const DecorationImage(
+        //   image: AssetImage('assets/images/news_background.jpg'),
+        //   fit: BoxFit.cover,
+        // ),
       ),
       child: Container(
         decoration: BoxDecoration(
