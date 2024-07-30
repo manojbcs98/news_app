@@ -1,0 +1,1 @@
+const String splashScreenLottie ='assets/lottie_1.json';
