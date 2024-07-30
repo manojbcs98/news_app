@@ -1,8 +1,7 @@
 import 'package:news_app_manoj/src/models/news_list_model.dart';
 import 'package:equatable/equatable.dart';
 
-abstract class NewsState extends Equatable {
-  @override
+abstract class NewsState  {
   List<Object?> get props => [];
 }
 
@@ -10,11 +9,12 @@ class NewsLoading extends NewsState {}
 
 class NewsLoaded extends NewsState {
   final List<News> newsList;
+  final bool hasMore;
 
-  NewsLoaded(this.newsList);
+   NewsLoaded(this.newsList, {this.hasMore = true});
 
   @override
-  List<Object?> get props => [newsList];
+  List<Object> get props => [newsList, hasMore];
 }
 
 class NewsError extends NewsState {
