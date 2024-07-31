@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              welcomeBanner(),
+              const WelcomeBanner(),
               const SizedBox(height: 20),
               Expanded(
                 child: BlocBuilder<NewsCubit, NewsState>(
