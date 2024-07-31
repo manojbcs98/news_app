@@ -39,7 +39,25 @@ class _NewsGridWidgetState extends State<NewsGridWidget> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => NewsDetail(news)),
+                PageRouteBuilder(
+                  transitionDuration: Duration(milliseconds: 500),
+                  pageBuilder: (context, animation, secondaryAnimation) =>
+                      NewsDetail(news),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    var begin = Offset(1.0, 0.0);
+                    var end = Offset.zero;
+                    var curve = Curves.ease;
+
+                    var tween = Tween(begin: begin, end: end)
+                        .chain(CurveTween(curve: curve));
+
+                    return SlideTransition(
+                      position: animation.drive(tween),
+                      child: child,
+                    );
+                  },
+                ),
               );
             },
             child: Card(
@@ -87,7 +105,7 @@ class _NewsGridWidgetState extends State<NewsGridWidget> {
                     child: IconButton(
                       icon: Icon(
                         isBookmarked ? Icons.bookmark : Icons.bookmark_border,
-                        color: Colors.white,
+                        color: Colors.white
                       ),
                       onPressed: () {
                         // Toggle bookmark logic
