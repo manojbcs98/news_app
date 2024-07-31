@@ -9,7 +9,7 @@ class NewsAPIService {
 
     try {
       final response = await dio.get(kNewsAppendUrlAPI, queryParameters: {
-        "api_token": "uWsLf5gKRJqRjjViGeTb5VWIxqFbSZTmIzSJBz5M",
+        "api_token": "v46LBCZGxskQwS4285m2KYH8fvv3c2kHs3LViBHr",
         "language": "en",
         'page': page,
         'limit': limit

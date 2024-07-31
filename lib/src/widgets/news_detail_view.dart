@@ -13,8 +13,6 @@ class NewsDetail extends StatefulWidget {
 }
 
 class _NewsDetailState extends State<NewsDetail> {
-  bool showFullArticle = false;
-
   void _navigateToZoomableImage(BuildContext context) {
     Navigator.push(
       context,
@@ -78,53 +76,11 @@ class _NewsDetailState extends State<NewsDetail> {
                       ),
                     ),
                     const SizedBox(height: 16.0),
-                    AnimatedCrossFade(
-                      duration: const Duration(milliseconds: 300),
-                      firstCurve: Curves.easeInOut,
-                      secondCurve: Curves.easeInOut,
-                      crossFadeState: showFullArticle
-                          ? CrossFadeState.showSecond
-                          : CrossFadeState.showFirst,
-                      firstChild: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '${widget.news.description}...',
-                            style: const TextStyle(
-                              fontSize: 16.0,
-                              color: Colors.white, // Description text color
-                            ),
-                          ),
-                          const SizedBox(height: 16.0),
-                        ],
-                      ),
-                      secondChild: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.news.description,
-                            style: const TextStyle(
-                              fontSize: 16.0,
-                              color: Colors.white, // Description text color
-                            ),
-                          ),
-                          const SizedBox(height: 16.0),
-                        ],
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          showFullArticle = !showFullArticle;
-                        });
-                      },
-                      child: Text(
-                        showFullArticle ? 'Read Less' : 'Read Full',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          decoration: TextDecoration.underline,
-                          fontSize: 16.0,
-                        ),
+                    Text(
+                      widget.news.description,
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.white, // Description text color
                       ),
                     ),
                   ],

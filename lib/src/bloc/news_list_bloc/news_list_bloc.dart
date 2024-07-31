@@ -39,7 +39,6 @@ class NewsCubit extends Cubit<NewsState> {
 
     _isLoading = true;
     print("Fetching news: page $_currentPage");
-
     try {
       final newsData = await _repoService.getNewsList(page: _currentPage, limit: _limit);
 
@@ -49,7 +48,6 @@ class NewsCubit extends Cubit<NewsState> {
         _hasMore = newsData.length == _limit;
 
         emit(NewsLoaded(_newsList, hasMore: _hasMore));
-        _startPeriodicFetching();
       } else {
         _hasMore = false;
         emit(NewsLoaded(_newsList, hasMore: _hasMore));

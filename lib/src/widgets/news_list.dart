@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                       return shimmerGridPlaceholder(6);
                     }
                     if (state is NewsLoaded) {
-                      return newsGrid(state, _scrollController);
+                      return NewsGridWidget(newsList: state.newsList,);
                     }
                     if (state is NewsError) {
                       return Center(child: Text('Error: ${state.message}'));
