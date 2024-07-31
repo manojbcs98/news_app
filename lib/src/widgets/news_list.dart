@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                 child: BlocBuilder<NewsCubit, NewsState>(
                   builder: (context, state) {
                     if (state is NewsLoading) {
-                      return shimmerGridPlaceholder(6);
+                      return ShimmerGridPlaceholder(4);
                     }
                     if (state is NewsLoaded) {
                       return NewsGridWidget(newsList: state.newsList,);
