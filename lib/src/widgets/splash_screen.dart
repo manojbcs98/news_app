@@ -5,7 +5,7 @@ import 'package:news_app_manoj/src/bloc/news_list_bloc/news_list_bloc.dart';
 import 'package:news_app_manoj/src/constants/string_constants.dart';
 import 'package:news_app_manoj/src/repo_service/news_list_repo_service.dart';
 import 'dart:async';
-import 'news_list_grid_view.dart';
+import 'news_list.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashScreen extends StatefulWidget {
