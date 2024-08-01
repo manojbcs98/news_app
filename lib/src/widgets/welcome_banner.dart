@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:news_app_manoj/src/bloc/news_list_bloc/news_list_states.dart';
 import 'package:news_app_manoj/src/constants/string_constants.dart';
 
 class WelcomeBanner extends StatelessWidget {
-  const WelcomeBanner({Key? key}) : super(key: key);
+  String msg;
+
+  WelcomeBanner({required this.msg, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +45,7 @@ class WelcomeBanner extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Text(
-              latestNewsText,
+                latestNewsText,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 14,
@@ -67,7 +70,7 @@ class WelcomeBanner extends StatelessWidget {
                   child: AnimatedTextKit(
                     animatedTexts: [
                       ColorizeAnimatedText(
-                        scrollText,
+                        msg,
                         textStyle: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -87,4 +90,3 @@ class WelcomeBanner extends StatelessWidget {
     );
   }
 }
-

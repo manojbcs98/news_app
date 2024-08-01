@@ -1,2 +1,2 @@
 const String kNewsBaseAPI = 'https://api.thenewsapi.com/v1/news/';
-const String kAPIToken = 'x97ZGw5gGvT1WZNNdNhKbQ3YApCtmGC81pfAcVtt';
+const String kAPIToken = 'ZAMWLkqlEqmz90tCzpP0mrjPV7N21kR77AA7hzOq';

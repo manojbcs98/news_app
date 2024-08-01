@@ -2,6 +2,7 @@ const String splashScreenLottie ='assets/lottie_1.json';
 const String welcomeText='Welcome to News App!';
 const String latestNewsText='Stay updated with the latest news and trends from around the world.';
 const String scrollText='Scroll to read the latest News';
+const String pleaseWaitText='Please wait while we load';
 const String appBarText="News App";
 const String noDataText="No data available";
 const String errorText='Error:';

@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: const Icon(Icons.menu, color: Colors.white,size: 25),
+        leading: const Icon(Icons.menu, color: Colors.white, size: 25),
         title: const Center(
           child: Text(
             appBarText,
@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: <Widget>[
           Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Container(
               width: 36,
               height: 30,
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: const Center(
-                child:Icon(Icons.verified_user,size: 20,)
+                child: Icon(Icons.verified_user, size: 20),
               ),
             ),
           ),
@@ -74,29 +74,48 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const WelcomeBanner(),
-              const SizedBox(height: 20),
-              Expanded(
-                child: BlocBuilder<NewsCubit, NewsState>(
-                  builder: (context, state) {
-                    if (state is NewsLoading) {
-                      return ShimmerGridPlaceholder(4);
-                    }
-                    if (state is NewsLoaded) {
-                      return NewsGridWidget(newsList: state.newsList,);
-                    }
-                    if (state is NewsError) {
-                      return Center(child: Text('$errorText ${state.message}'));
-                    }
-                    return const Center(child: Text(noDataText));
-                  },
-                ),
-              ),
-            ],
+          padding: const EdgeInsets.all(20.0),
+          child: BlocBuilder<NewsCubit, NewsState>(
+            builder: (context, state) {
+              Widget content;
+
+              // Display the WelcomeBanner only in the loading and loaded states
+              if (state is NewsLoading) {
+                content = Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    WelcomeBanner(msg: pleaseWaitText),
+                    const SizedBox(height: 20),
+                    Expanded(child: ShimmerGridPlaceholder(6)),
+                  ],
+                );
+              }
+              if (state is NewsLoaded) {
+                content = Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    WelcomeBanner(msg: scrollText),
+                    const SizedBox(height: 20),
+                    Expanded(child: NewsGridWidget(newsList: state.newsList)),
+                  ],
+                );
+              } else if (state is NewsError) {
+                content = Center(
+                    child: Text(
+                        '$errorText ${state.message}')); // Show error message
+              } else {
+                content = Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    WelcomeBanner(msg: pleaseWaitText),
+                    const SizedBox(height: 20),
+                    Expanded(child: ShimmerGridPlaceholder(4)),
+                  ],
+                );
+              }
+
+              return content;
+            },
           ),
         ),
       ),
