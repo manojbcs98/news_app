@@ -78,8 +78,6 @@ class _HomePageState extends State<HomePage> {
           child: BlocBuilder<NewsCubit, NewsState>(
             builder: (context, state) {
               Widget content;
-
-              // Display the WelcomeBanner only in the loading and loaded states
               if (state is NewsLoading) {
                 content = Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
