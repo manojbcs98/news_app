@@ -1,1 +1,17 @@
 const String splashScreenLottie ='assets/lottie_1.json';
+const String welcomeText='Welcome to News App!';
+const String latestNewsText='Stay updated with the latest news and trends from around the world.';
+const String scrollText='Scroll to read the latest News';
+const String appBarText="News App";
+const String noDataText="No data available";
+const String errorText='Error:';
+const String pinchToZoomText='Pinch to Zoom';
+const String demoTitle ='Flutter Demo';
+const String apiToken='api_token';
+const String languageText="language";
+const String enLanguageCode ='en';
+const String pageText ='page';
+const String limitText='limit';
+const String kNewsAppendUrlAPI = 'all';
+const String dataText='data';
+const String cachedNewsText='cached_news';

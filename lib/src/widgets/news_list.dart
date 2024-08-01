@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app_manoj/src/bloc/news_list_bloc/news_list_bloc.dart';
 import 'package:news_app_manoj/src/bloc/news_list_bloc/news_list_states.dart';
+import 'package:news_app_manoj/src/constants/string_constants.dart';
 import 'package:news_app_manoj/src/widgets/shimmer.dart';
 import 'package:news_app_manoj/src/widgets/welcome_banner.dart';
 import 'grid_view.dart';
@@ -47,10 +48,10 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: const Icon(Icons.menu, color: Colors.white),
+        leading: const Icon(Icons.menu, color: Colors.white,size: 25),
         title: const Center(
           child: Text(
-            "News App",
+            appBarText,
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ),
@@ -65,10 +66,7 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: const Center(
-                child: Text(
-                  "0",
-                  style: TextStyle(color: Colors.white),
-                ),
+                child:Icon(Icons.verified_user,size: 20,)
               ),
             ),
           ),
@@ -92,9 +90,9 @@ class _HomePageState extends State<HomePage> {
                       return NewsGridWidget(newsList: state.newsList,);
                     }
                     if (state is NewsError) {
-                      return Center(child: Text('Error: ${state.message}'));
+                      return Center(child: Text('$errorText ${state.message}'));
                     }
-                    return const Center(child: Text('No data available'));
+                    return const Center(child: Text(noDataText));
                   },
                 ),
               ),

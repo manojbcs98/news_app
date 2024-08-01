@@ -1,4 +1,3 @@
-
 class News {
   final String uuid;
   final String title;
@@ -28,7 +27,6 @@ class News {
     this.relevanceScore,
   });
 
-  // Factory constructor to create a NewsArticle from a map
   factory News.fromMap(Map<String, dynamic> map) {
     return News(
       uuid: map['uuid'] as String,
@@ -48,7 +46,6 @@ class News {
     );
   }
 
-  // Method to convert a NewsArticle to a map
   Map<String, dynamic> toMap() {
     return {
       'uuid': uuid,

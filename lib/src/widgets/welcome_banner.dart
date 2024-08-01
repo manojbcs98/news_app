@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:news_app_manoj/src/constants/string_constants.dart';
 
 class WelcomeBanner extends StatelessWidget {
   const WelcomeBanner({Key? key}) : super(key: key);
@@ -26,13 +27,13 @@ class WelcomeBanner extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               const Text(
-                "Welcome to News App!",
+                welcomeText,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
@@ -41,7 +42,7 @@ class WelcomeBanner extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Text(
-                "Stay updated with the latest news and trends from around the world.",
+              latestNewsText,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 14,
@@ -66,7 +67,7 @@ class WelcomeBanner extends StatelessWidget {
                   child: AnimatedTextKit(
                     animatedTexts: [
                       ColorizeAnimatedText(
-                        'Scroll to read the latest News',
+                        scrollText,
                         textStyle: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,

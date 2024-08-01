@@ -37,7 +37,7 @@ class _NewsDetailState extends State<NewsDetail> {
                     onTap: () => _navigateToZoomableImage(context),
                     child: Hero(
                       tag: widget.news.imageUrl,
-                      child: newsCachedImageWidget(widget.news.imageUrl),
+                      child: NewsCachedImageWidget(widget.news.imageUrl),
                     ),
                   ),
                   Positioned(

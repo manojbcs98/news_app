@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:news_app_manoj/src/api_service/news_api_service.dart';
-import 'package:news_app_manoj/src/bloc/news_list_bloc/news_list_bloc.dart';
 import 'package:news_app_manoj/src/constants/string_constants.dart';
-import 'package:news_app_manoj/src/repo_service/news_list_repo_service.dart';
 import 'dart:async';
 import 'news_list.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

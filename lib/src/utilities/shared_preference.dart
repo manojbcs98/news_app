@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:news_app_manoj/src/constants/string_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefUtil {
@@ -7,7 +8,7 @@ class SharedPrefUtil {
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
     preferences.setStringList(
-      'cached_news',
+      cachedNewsText,
       jsonList.map((json) => jsonEncode(json)).toList(),
     );
   }
@@ -15,7 +16,7 @@ class SharedPrefUtil {
   static Future<List<dynamic>> getJsonListFromCache() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
-    final cachedJsonList = preferences.getStringList('cached_news') ?? [];
+    final cachedJsonList = preferences.getStringList(cachedNewsText) ?? [];
     return cachedJsonList.map((jsonString) => jsonDecode(jsonString)).toList();
   }
 }

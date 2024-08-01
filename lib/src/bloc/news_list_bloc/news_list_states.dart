@@ -1,5 +1,4 @@
 import 'package:news_app_manoj/src/models/news_list_model.dart';
-import 'package:equatable/equatable.dart';
 
 abstract class NewsState  {
   List<Object?> get props => [];

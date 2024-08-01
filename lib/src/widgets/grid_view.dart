@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_manoj/src/models/news_list_model.dart';
 import 'package:news_app_manoj/src/widgets/cached_image.dart';
+import 'package:news_app_manoj/src/widgets/shimmer.dart';
 import 'news_detail_view.dart';
-
-import 'package:shimmer/shimmer.dart';
 
 class NewsGridWidget extends StatefulWidget {
   final List<News> newsList;
@@ -16,12 +15,12 @@ class NewsGridWidget extends StatefulWidget {
 
 class _NewsGridWidgetState extends State<NewsGridWidget> {
   ScrollController scrollController = ScrollController();
-  Set<int> bookmarkedIndices = Set<int>(); // To store bookmarked item indices
+  Set<int> bookmarkedIndices = <int>{};
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       controller: scrollController,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -45,7 +44,7 @@ class _NewsGridWidgetState extends State<NewsGridWidget> {
                       NewsDetail(news),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
-                    var begin = Offset(1.0, 0.0);
+                    var begin = const Offset(1.0, 0.0);
                     var end = Offset.zero;
                     var curve = Curves.ease;
 
@@ -69,7 +68,7 @@ class _NewsGridWidgetState extends State<NewsGridWidget> {
               child: Stack(
                 children: [
                   Positioned.fill(
-                    child: newsCachedImageWidget(news.imageUrl),
+                    child: NewsCachedImageWidget(news.imageUrl),
                   ),
                   Positioned(
                     bottom: 0,
@@ -104,11 +103,9 @@ class _NewsGridWidgetState extends State<NewsGridWidget> {
                     right: 1,
                     child: IconButton(
                       icon: Icon(
-                        isBookmarked ? Icons.bookmark : Icons.bookmark_border,
-                        color: Colors.white
-                      ),
+                          isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+                          color: Colors.white),
                       onPressed: () {
-                        // Toggle bookmark logic
                         setState(() {
                           if (isBookmarked) {
                             bookmarkedIndices.remove(index);
@@ -124,26 +121,9 @@ class _NewsGridWidgetState extends State<NewsGridWidget> {
             ),
           );
         } else {
-          // Loading Indicator
-          return _buildShimmerEffect();
+          return buildShimmerEffectForSingleContainer();
         }
       },
-    );
-  }
-
-  Widget _buildShimmerEffect() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Shimmer.fromColors(
-        baseColor: Colors.grey[300]!,
-        highlightColor: Colors.grey[100]!,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(15),
-          ),
-        ),
-      ),
     );
   }
 }

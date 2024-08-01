@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:news_app_manoj/src/constants/string_constants.dart';
 import 'package:photo_view/photo_view.dart';
 
 class ZoomableImage extends StatelessWidget {
@@ -68,7 +69,7 @@ class ZoomableImage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Pinch to Zoom',
+                    pinchToZoomText,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,

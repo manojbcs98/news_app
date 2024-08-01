@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-
 class ShimmerGridPlaceholder extends StatelessWidget {
   int count;
    ShimmerGridPlaceholder(this.count,{Key? key}) : super(key: key);
@@ -55,3 +54,18 @@ class ShimmerGridPlaceholder extends StatelessWidget {
   }
 }
 
+Widget buildShimmerEffectForSingleContainer() {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15),
+        ),
+      ),
+    ),
+  );
+}
